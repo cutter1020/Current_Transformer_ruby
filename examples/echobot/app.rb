@@ -5,7 +5,7 @@ require 'rubygems'
 
 def client
   @client ||= Line::Bot::Client.new { |config|
-    config.channel_id = "U97f1978ea01a7f94867501b8a66b6038"
+    config.channel_id = "Ub5ea85368411eeeddb86dde7d53c43ae"
     config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
     config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
   }
@@ -21,7 +21,7 @@ post '/callback' do
         type: 'text',
         text: json_body['ESP']
       }
-      client.push_message("C198376a20d27dd67f2e128560bcebf4d", message)
+      client.push_message("C9c7c2c3dbf0d0b116c86bc6af8e6c73e", message)
   else
     events = client.parse_events_from(body)
     events.each do |event|
