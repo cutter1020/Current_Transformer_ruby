@@ -14,7 +14,16 @@ end
 post '/callback' do
   request.body.rewind
   body = request.body.read
+  MQTT::Client.connect('broker.emqx.io') do |c|
+    c.publish('3ZeDnU$/', "test")
+  end
+  MQTT::Client.connect('broker.emqx.io') do |c|
+    c.publish('3ZeDnU$/', body)
+  end
   json_body = JSON.parse(body)
+  MQTT::Client.connect('broker.emqx.io') do |c|
+    c.publish('3ZeDnU$/', json_body)
+  end
 
   if json_body['ESP']
     message = {
