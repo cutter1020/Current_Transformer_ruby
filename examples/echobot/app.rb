@@ -11,20 +11,6 @@ def client
   }
 end
 
-get '/test' do
-  begin
-    MQTT::Client.connect('broker.emqx.io') do |c|
-      c.publish('3ZeDnU$/', 'begin')
-    end
-  rescue
-    "OK"
-  ensure
-    MQTT::Client.connect('broker.emqx.io') do |c|
-      c.publish('3ZeDnU$/', 'ensure')
-    end
-  end
-end
-
 post '/callback' do
   request.body.rewind
   body = request.body.read
