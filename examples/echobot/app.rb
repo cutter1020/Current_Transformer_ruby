@@ -41,11 +41,9 @@ post '/callback' do
           #client
          # Publish example
           uri = URI('https://oil_2_flask-1-h5379095.deta.app/mqtt')
-          Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
-            headers = { 'Content-Type': 'application/json' }
-            body = { topic: '3ZeDnU$/', msg: event.message['text'] }
-            response = Net::HTTP.post(uri, body.to_json, headers)
-          end
+          headers = { 'Content-Type': 'application/json' }
+          body = { topic: '3ZeDnU$/', msg: event.message['text'] }
+          response = Net::HTTP.post(uri, body.to_json, headers)
         end
       end
     end
